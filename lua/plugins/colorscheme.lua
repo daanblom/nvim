@@ -1,3 +1,7 @@
+-- return {
+--  "rebelot/kanagawa.nvim"
+--}
+--
 return {
-  "rebelot/kanagawa.nvim"
+  "daanblom/db.nvim"
 }
