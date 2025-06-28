@@ -11,6 +11,9 @@ A modern, well-structured Neovim configuration built with Lua.
 - **Note Taking**: Obsidian.nvim integration for markdown note management
 - **Auto-completion**: Nvim-cmp with autopairs for enhanced editing experience
 - **Smart Keymaps**: Intuitive keybindings optimized for productivity
+- **File Browser**: Integrated telescope file browser with hidden file support
+- **Focus Mode**: Focus.nvim for distraction-free editing
+- **Color Highlighting**: Nvim-colorizer for enhanced color display
 
 ## 📁 Structure
 
@@ -26,6 +29,8 @@ A modern, well-structured Neovim configuration built with Lua.
     ├── plugins/
     │   ├── autopairs.lua   # Auto-pairs configuration
     │   ├── colorscheme.lua # db.nvim colorscheme
+    │   ├── colorhighlight.lua # Nvim-colorizer
+    │   ├── focus.lua       # Focus.nvim configuration
     │   ├── obsidian.lua    # Obsidian integration
     │   ├── snacks.lua      # Snacks.nvim configuration
     │   ├── telescope.lua   # Telescope fuzzy finder
@@ -40,6 +45,7 @@ A modern, well-structured Neovim configuration built with Lua.
 - **Icons**: Nvim-web-devicons for file type icons
 - **Transparency**: Optional transparent background support
 - **Dark Mode**: Optimized for dark backgrounds
+- **Color Highlighting**: Enhanced color display with nvim-colorizer
 
 ## 🔧 Core Configuration
 
@@ -65,6 +71,16 @@ A modern, well-structured Neovim configuration built with Lua.
 - `<leader>ps` - Search in files (Snacks)
 - `<leader>pws` - Search for word under cursor (Snacks)
 
+#### File Browser (Telescope)
+- `e` - Open file browser
+- `<C-v>` - Open in vertical split
+- `<C-s>` - Open in horizontal split
+- `<C-t>` - Open in new tab
+- `N` - Create new file/folder
+- `h` - Go to parent directory
+- `/` - Start filtering
+- `<Esc>` - Close file browser
+
 #### Tab Management
 - `<leader>t` - Open new tab
 - `<leader>x` - Close current tab
@@ -77,6 +93,11 @@ A modern, well-structured Neovim configuration built with Lua.
 
 #### Theme Management
 - `<leader>ths` - Theme switcher
+
+#### Focus Mode
+- `:Focus` - Toggle focus mode
+- `:Zen` - Enter zen mode
+- `:Narrow` - Narrow view
 
 #### Utility
 - `<leader>y` - Copy to system clipboard
@@ -99,13 +120,15 @@ A modern, well-structured Neovim configuration built with Lua.
 - **[Nvim-autopairs](https://github.com/windwp/nvim-autopairs)** - Auto-pair brackets and quotes
 
 ### Appearance
-- **[db.nvim.nvim](https://github.com/daanblom/db.nvim)** - Colorscheme
+- **[db.nvim](https://github.com/daanblom/db.nvim)** - Colorscheme
 - **[Nvim-web-devicons](https://github.com/nvim-tree/nvim-web-devicons)** - File icons
 - **[Transparent.nvim](https://github.com/xiyaowong/transparent.nvim)** - Transparent background
+- **[Nvim-colorizer.lua](https://github.com/norcalli/nvim-colorizer.lua)** - Color highlighting
 
 ### Productivity
 - **[Obsidian.nvim](https://github.com/epwalsh/obsidian.nvim)** - Obsidian integration
 - **[Nvim-cmp](https://github.com/hrsh7th/nvim-cmp)** - Completion engine
+- **[Focus.nvim](https://github.com/cdmill/focus.nvim)** - Focus mode and zen editing
 
 ### Telescope Extensions
 - **telescope-fzf-native** - FZF integration
@@ -170,6 +193,7 @@ Modify `lua/core/options.lua` to adjust Neovim settings.
 - The configuration uses Lazy.nvim for fast plugin loading
 - All plugins are configured with lazy loading for optimal performance
 - Git integration is available through LazyGit
+- Focus mode available for distraction-free editing
 
 ## 🤝 Contributing
 
