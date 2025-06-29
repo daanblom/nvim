@@ -6,14 +6,20 @@ A modern, well-structured Neovim configuration built with Lua.
 
 - **Plugin Management**: Uses Lazy.nvim for fast and efficient plugin loading
 - **Beautiful UI**: db.nvim colorscheme with transparent background support
+- **Status Line**: Lualine.nvim for a beautiful and informative status bar
 - **Fuzzy Finding**: Telescope integration for file searching and navigation
+- **Command Palette**: Wilder.nvim for enhanced command-line completion
 - **Git Integration**: LazyGit integration through Snacks.nvim
 - **Note Taking**: Obsidian.nvim integration for markdown note management
 - **Auto-completion**: Nvim-cmp with autopairs for enhanced editing experience
 - **Smart Keymaps**: Intuitive keybindings optimized for productivity
 - **File Browser**: Integrated telescope file browser with hidden file support
+- **Mini File Explorer**: Mini.files for lightweight file navigation
 - **Focus Mode**: Focus.nvim for distraction-free editing
 - **Color Highlighting**: Nvim-colorizer for enhanced color display
+- **Syntax Highlighting**: Treesitter for advanced syntax parsing
+- **Key Display**: Showkeys for displaying pressed keys
+- **Code Utilities**: Mini suite for comments, surround, whitespace, and split/join operations
 
 ## 📁 Structure
 
@@ -31,10 +37,15 @@ A modern, well-structured Neovim configuration built with Lua.
     │   ├── colorscheme.lua # db.nvim colorscheme
     │   ├── colorhighlight.lua # Nvim-colorizer
     │   ├── focus.lua       # Focus.nvim configuration
+    │   ├── lualine.lua     # Status line configuration
+    │   ├── mini.lua        # Mini.nvim suite configuration
     │   ├── obsidian.lua    # Obsidian integration
+    │   ├── showkeys.lua    # Key display configuration
     │   ├── snacks.lua      # Snacks.nvim configuration
     │   ├── telescope.lua   # Telescope fuzzy finder
-    │   └── transparent.lua # Transparent background
+    │   ├── treesitter.lua  # Treesitter configuration
+    │   ├── transparent.lua # Transparent background
+    │   └── wilder.lua      # Command palette configuration
     ├── current-theme.lua   # Current theme tracking
     └── lazySetup.lua       # Lazy.nvim setup
 ```
@@ -42,6 +53,7 @@ A modern, well-structured Neovim configuration built with Lua.
 ## 🎨 Appearance
 
 - **Colorscheme**: [db.nvim](https://github.com/daanblom/db.nvim) - A beautiful dark theme 
+- **Status Line**: Lualine.nvim with git integration and lazy updates
 - **Icons**: Nvim-web-devicons for file type icons
 - **Transparency**: Optional transparent background support
 - **Dark Mode**: Optimized for dark backgrounds
@@ -81,6 +93,12 @@ A modern, well-structured Neovim configuration built with Lua.
 - `/` - Start filtering
 - `<Esc>` - Close file browser
 
+#### Mini File Explorer
+- `<leader>ee` - Toggle mini file explorer
+- `<leader>ef` - Open explorer at current file location
+- `<CR>` or `L` - Enter directory or open file
+- `-` or `H` - Go to parent directory
+
 #### Tab Management
 - `<leader>t` - Open new tab
 - `<leader>x` - Close current tab
@@ -98,6 +116,18 @@ A modern, well-structured Neovim configuration built with Lua.
 - `:Focus` - Toggle focus mode
 - `:Zen` - Enter zen mode
 - `:Narrow` - Narrow view
+
+#### Code Utilities
+- `<leader>cw` - Erase trailing whitespace
+- `sa` - Add surrounding (normal/visual mode)
+- `ds` - Delete surrounding
+- `sf` - Find surrounding (right)
+- `sF` - Find surrounding (left)
+- `sh` - Highlight surrounding
+- `sr` - Replace surrounding
+- `sj` - Join arguments
+- `sk` - Split arguments
+- `<C-space>` - Incremental selection (treesitter)
 
 #### Utility
 - `<leader>y` - Copy to system clipboard
@@ -121,6 +151,7 @@ A modern, well-structured Neovim configuration built with Lua.
 
 ### Appearance
 - **[db.nvim](https://github.com/daanblom/db.nvim)** - Colorscheme
+- **[Lualine.nvim](https://github.com/nvim-lualine/lualine.nvim)** - Status line
 - **[Nvim-web-devicons](https://github.com/nvim-tree/nvim-web-devicons)** - File icons
 - **[Transparent.nvim](https://github.com/xiyaowong/transparent.nvim)** - Transparent background
 - **[Nvim-colorizer.lua](https://github.com/norcalli/nvim-colorizer.lua)** - Color highlighting
@@ -129,6 +160,18 @@ A modern, well-structured Neovim configuration built with Lua.
 - **[Obsidian.nvim](https://github.com/epwalsh/obsidian.nvim)** - Obsidian integration
 - **[Nvim-cmp](https://github.com/hrsh7th/nvim-cmp)** - Completion engine
 - **[Focus.nvim](https://github.com/cdmill/focus.nvim)** - Focus mode and zen editing
+- **[Wilder.nvim](https://github.com/gelguy/wilder.nvim)** - Enhanced command palette
+- **[Showkeys](https://github.com/nvzone/showkeys)** - Display pressed keys
+
+### Code Enhancement
+- **[Nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter)** - Syntax highlighting and parsing
+- **[Nvim-ts-autotag](https://github.com/windwp/nvim-ts-autotag)** - Auto-close tags for JSX/TSX/HTML
+- **[Mini.nvim](https://github.com/echasnovski/mini.nvim)** - Lightweight plugin suite
+  - **mini.comment** - Comment operations with context awareness
+  - **mini.files** - Lightweight file explorer
+  - **mini.surround** - Surround text objects
+  - **mini.trailspace** - Trailing whitespace management
+  - **mini.splitjoin** - Split and join code structures
 
 ### Telescope Extensions
 - **telescope-fzf-native** - FZF integration
@@ -193,7 +236,10 @@ Modify `lua/core/options.lua` to adjust Neovim settings.
 - The configuration uses Lazy.nvim for fast plugin loading
 - All plugins are configured with lazy loading for optimal performance
 - Git integration is available through LazyGit
-- Focus mode available for distraction-free editing
+- Focus mode available for distraction-free reading or editing
+- Treesitter provides advanced syntax highlighting for multiple languages
+- Mini.nvim suite offers lightweight alternatives to larger plugins
+- Wilder.nvim enhances command-line completion with fuzzy matching
 
 ## 🤝 Contributing
 
