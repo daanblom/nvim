@@ -5,13 +5,15 @@ A modern, well-structured Neovim configuration built with Lua.
 ## 🚀 Features
 
 - **Plugin Management**: Uses Lazy.nvim for fast and efficient plugin loading
+- **Startup Screen**: Alpha-nvim for a beautiful startup dashboard
 - **Beautiful UI**: db.nvim colorscheme with transparent background support
 - **Status Line**: Lualine.nvim for a beautiful and informative status bar
 - **Fuzzy Finding**: Telescope integration for file searching and navigation
 - **Command Palette**: Wilder.nvim for enhanced command-line completion
-- **Git Integration**: LazyGit integration through Snacks.nvim
+- **Git Integration**: LazyGit integration through Snacks.nvim and GitGutter for change indicators
 - **Note Taking**: Obsidian.nvim integration for markdown note management
-- **Auto-completion**: Nvim-cmp with autopairs for enhanced editing experience
+- **Auto-completion**: Enhanced nvim-cmp with snippets, LSP integration, and Tailwind support
+- **Language Server**: Comprehensive LSP setup with Mason for multiple languages
 - **Smart Keymaps**: Intuitive keybindings optimized for productivity
 - **File Browser**: Integrated telescope file browser with hidden file support
 - **Mini File Explorer**: Mini.files for lightweight file navigation
@@ -33,25 +35,32 @@ A modern, well-structured Neovim configuration built with Lua.
     │   ├── keymaps.lua     # Key mappings
     │   └── options.lua     # Neovim options
     ├── plugins/
+    │   ├── alphanvim.lua   # Startup screen configuration
     │   ├── autopairs.lua   # Auto-pairs configuration
     │   ├── colorscheme.lua # db.nvim colorscheme
     │   ├── colorhighlight.lua # Nvim-colorizer
     │   ├── focus.lua       # Focus.nvim configuration
+    │   ├── gitgutter.lua   # Git change indicators
     │   ├── lualine.lua     # Status line configuration
     │   ├── mini.lua        # Mini.nvim suite configuration
+    │   ├── nvim-cmp.lua    # Enhanced completion configuration
     │   ├── obsidian.lua    # Obsidian integration
     │   ├── showkeys.lua    # Key display configuration
     │   ├── snacks.lua      # Snacks.nvim configuration
     │   ├── telescope.lua   # Telescope fuzzy finder
     │   ├── treesitter.lua  # Treesitter configuration
     │   ├── transparent.lua # Transparent background
-    │   └── wilder.lua      # Command palette configuration
+    │   ├── wilder.lua      # Command palette configuration
+    │   └── lsp/
+    │       ├── mason.lua   # LSP package manager
+    │       └── lsp.lua     # LSP server configurations
     ├── current-theme.lua   # Current theme tracking
     └── lazySetup.lua       # Lazy.nvim setup
 ```
 
 ## 🎨 Appearance
 
+- **Startup Screen**: Alpha-nvim with file icons and recent files
 - **Colorscheme**: [db.nvim](https://github.com/daanblom/db.nvim) - A beautiful dark theme 
 - **Status Line**: Lualine.nvim with git integration and lazy updates
 - **Icons**: Nvim-web-devicons for file type icons
@@ -108,6 +117,21 @@ A modern, well-structured Neovim configuration built with Lua.
 #### Git Integration
 - `<leader>lg` - Open LazyGit
 - `<leader>gl` - Open LazyGit log
+- GitGutter indicators for file changes
+
+#### LSP (Language Server Protocol)
+- `gd` - Go to definition (Telescope)
+- `gD` - Go to declaration
+- `gi` - Go to implementation (Telescope)
+- `gt` - Go to type definition (Telescope)
+- `gR` - Show references (Telescope)
+- `K` - Show hover documentation
+- `<leader>rn` - Smart rename
+- `<leader>vca` - Code actions
+- `<leader>d` - Show line diagnostics
+- `<leader>D` - Show buffer diagnostics (Telescope)
+- `<leader>rs` - Restart LSP
+- `<C-h>` - Signature help (insert mode)
 
 #### Theme Management
 - `<leader>ths` - Theme switcher
@@ -145,6 +169,7 @@ A modern, well-structured Neovim configuration built with Lua.
 
 ### Core Plugins
 - **[Lazy.nvim](https://github.com/folke/lazy.nvim)** - Plugin manager
+- **[Alpha-nvim](https://github.com/goolord/alpha-nvim)** - Startup screen
 - **[Telescope.nvim](https://github.com/nvim-telescope/telescope.nvim)** - Fuzzy finder
 - **[Snacks.nvim](https://github.com/folke/snacks.nvim)** - Enhanced picker and utilities
 - **[Nvim-autopairs](https://github.com/windwp/nvim-autopairs)** - Auto-pair brackets and quotes
@@ -158,10 +183,30 @@ A modern, well-structured Neovim configuration built with Lua.
 
 ### Productivity
 - **[Obsidian.nvim](https://github.com/epwalsh/obsidian.nvim)** - Obsidian integration
-- **[Nvim-cmp](https://github.com/hrsh7th/nvim-cmp)** - Completion engine
 - **[Focus.nvim](https://github.com/cdmill/focus.nvim)** - Focus mode and zen editing
 - **[Wilder.nvim](https://github.com/gelguy/wilder.nvim)** - Enhanced command palette
 - **[Showkeys](https://github.com/nvzone/showkeys)** - Display pressed keys
+
+### Git Integration
+- **[Vim-gitgutter](https://github.com/airblade/vim-gitgutter)** - Git change indicators
+
+### Language Server Protocol
+- **[Mason.nvim](https://github.com/williamboman/mason.nvim)** - LSP package manager
+- **[Mason-lspconfig](https://github.com/williamboman/mason-lspconfig.nvim)** - Mason LSP integration
+- **[Mason-tool-installer](https://github.com/WhoIsSethDaniel/mason-tool-installer.nvim)** - Auto-install tools
+- **[Nvim-lspconfig](https://github.com/neovim/nvim-lspconfig)** - LSP configurations
+- **[Nvim-lsp-file-operations](https://github.com/antosha417/nvim-lsp-file-operations)** - LSP file operations
+
+### Enhanced Completion
+- **[Nvim-cmp](https://github.com/hrsh7th/nvim-cmp)** - Completion engine
+- **[Cmp-nvim-lsp](https://github.com/hrsh7th/cmp-nvim-lsp)** - LSP completion source
+- **[Cmp-buffer](https://github.com/hrsh7th/cmp-buffer)** - Buffer completion source
+- **[Cmp-path](https://github.com/hrsh7th/cmp-path)** - Path completion source
+- **[LuaSnip](https://github.com/L3MON4D3/LuaSnip)** - Snippet engine
+- **[Cmp-luasnip](https://github.com/saadparwaiz1/cmp_luasnip)** - LuaSnip completion
+- **[Friendly-snippets](https://github.com/rafamadriz/friendly-snippets)** - VSCode-style snippets
+- **[Lspkind.nvim](https://github.com/onsails/lspkind.nvim)** - VSCode pictograms
+- **[Tailwindcss-colorizer-cmp](https://github.com/roobert/tailwindcss-colorizer-cmp.nvim)** - Tailwind color support
 
 ### Code Enhancement
 - **[Nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter)** - Syntax highlighting and parsing
@@ -235,11 +280,14 @@ Modify `lua/core/options.lua` to adjust Neovim settings.
 
 - The configuration uses Lazy.nvim for fast plugin loading
 - All plugins are configured with lazy loading for optimal performance
-- Git integration is available through LazyGit
+- Git integration is available through LazyGit and GitGutter
 - Focus mode available for distraction-free reading or editing
 - Treesitter provides advanced syntax highlighting for multiple languages
 - Mini.nvim suite offers lightweight alternatives to larger plugins
 - Wilder.nvim enhances command-line completion with fuzzy matching
+- Comprehensive LSP setup supports multiple languages including Lua, TypeScript, Go, HTML, CSS, and more
+- Enhanced completion with snippets, LSP integration, and Tailwind CSS support
+- Mason automatically manages LSP servers and development tools
 
 ## 🤝 Contributing
 
