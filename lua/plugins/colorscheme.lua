@@ -1,3 +1,3 @@
 return {
-  "daanblom/db.nvim"
+	"daanblom/db.nvim",
 }

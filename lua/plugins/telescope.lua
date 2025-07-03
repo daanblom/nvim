@@ -1,7 +1,7 @@
 return {
 	"nvim-telescope/telescope.nvim",
-	branch = "master", -- using master to fix issues with deprecated to definition warnings 
-    -- '0.1.x' for stable ver.
+	branch = "master", -- using master to fix issues with deprecated to definition warnings
+	-- '0.1.x' for stable ver.
 	dependencies = {
 		"nvim-lua/plenary.nvim",
 		{ "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
@@ -51,7 +51,9 @@ return {
 					hidden = true,
 					mappings = {
 						["i"] = {
-							["<C-w>"] = function() vim.cmd('normal vbd') end,
+							["<C-w>"] = function()
+								vim.cmd("normal vbd")
+							end,
 						},
 						["n"] = {
 							["N"] = telescope.extensions.file_browser.actions.create,
@@ -72,7 +74,12 @@ return {
 			builtin.grep_string({ search = word })
 		end, { desc = "Find Connected Words under cursor" })
 
-		vim.keymap.set("n", "<leader>ths", "<cmd>Telescope themes<CR>", { noremap = true, silent = true, desc = "Theme Switcher" })
+		vim.keymap.set(
+			"n",
+			"<leader>ths",
+			"<cmd>Telescope themes<CR>",
+			{ noremap = true, silent = true, desc = "Theme Switcher" }
+		)
 		vim.keymap.set("n", "e", "<cmd>Telescope file_browser<CR>", { desc = "File Explorer" })
-    end,
+	end,
 }
