@@ -22,6 +22,10 @@ A modern, well-structured Neovim configuration built with Lua.
 - **Syntax Highlighting**: Treesitter for advanced syntax parsing
 - **Key Display**: Showkeys for displaying pressed keys
 - **Code Utilities**: Mini suite for comments, surround, whitespace, and split/join operations
+- **Code Formatting**: Conform.nvim for automatic code formatting
+- **Diagnostics**: Trouble.nvim for better diagnostic display
+- **Enhanced UI**: Noice.nvim for improved command line and popup interfaces
+- **HTML/CSS**: Emmet support for rapid HTML/CSS development
 
 ## 📁 Structure
 
@@ -39,21 +43,28 @@ A modern, well-structured Neovim configuration built with Lua.
     │   ├── autopairs.lua   # Auto-pairs configuration
     │   ├── colorscheme.lua # db.nvim colorscheme
     │   ├── colorhighlight.lua # Nvim-colorizer
+    │   ├── emmet.lua       # Emmet HTML/CSS abbreviations
     │   ├── focus.lua       # Focus.nvim configuration
+    │   ├── formatting.lua  # Code formatting configuration
     │   ├── gitgutter.lua   # Git change indicators
     │   ├── lualine.lua     # Status line configuration
+    │   ├── lush.lua        # Colorscheme development
     │   ├── mini.lua        # Mini.nvim suite configuration
     │   ├── nvim-cmp.lua    # Enhanced completion configuration
+    │   ├── noice.lua       # Enhanced UI configuration
     │   ├── obsidian.lua    # Obsidian integration
+    │   ├── prettier.lua    # Prettier formatting
     │   ├── showkeys.lua    # Key display configuration
     │   ├── snacks.lua      # Snacks.nvim configuration
     │   ├── telescope.lua   # Telescope fuzzy finder
     │   ├── treesitter.lua  # Treesitter configuration
     │   ├── transparent.lua # Transparent background
-    │   ├── wilder.lua      # Command palette configuration
-    │   └── lsp/
-    │       ├── mason.lua   # LSP package manager
-    │       └── lsp.lua     # LSP server configurations
+    │   ├── trouble.lua     # Diagnostics display
+    │   └── wilder.lua      # Command palette configuration
+    └── lsp/
+        ├── mason.lua       # LSP package manager
+        ├── lsp.lua         # LSP server configurations
+        └── lsp-format.lua  # LSP formatting configuration
     ├── current-theme.lua   # Current theme tracking
     └── lazySetup.lua       # Lazy.nvim setup
 ```
@@ -67,6 +78,7 @@ A modern, well-structured Neovim configuration built with Lua.
 - **Transparency**: Optional transparent background support
 - **Dark Mode**: Optimized for dark backgrounds
 - **Color Highlighting**: Enhanced color display with nvim-colorizer
+- **Enhanced UI**: Noice.nvim for improved command line and popup interfaces
 
 ## 🔧 Core Configuration
 
@@ -133,6 +145,15 @@ A modern, well-structured Neovim configuration built with Lua.
 - `<leader>rs` - Restart LSP
 - `<C-h>` - Signature help (insert mode)
 
+#### Diagnostics & Formatting
+- `<leader>xw` - Open workspace diagnostics (Trouble)
+- `<leader>xd` - Open document diagnostics (Trouble)
+- `<leader>xq` - Open quickfix list (Trouble)
+- `<leader>xl` - Open location list (Trouble)
+- `<leader>xt` - Open todos (Trouble)
+- `<leader>mp` - Format file or range (Conform)
+- `<leader>xe` - Wrap with Emmet abbreviation
+
 #### Theme Management
 - `<leader>ths` - Theme switcher
 
@@ -180,6 +201,8 @@ A modern, well-structured Neovim configuration built with Lua.
 - **[Nvim-web-devicons](https://github.com/nvim-tree/nvim-web-devicons)** - File icons
 - **[Transparent.nvim](https://github.com/xiyaowong/transparent.nvim)** - Transparent background
 - **[Nvim-colorizer.lua](https://github.com/norcalli/nvim-colorizer.lua)** - Color highlighting
+- **[Noice.nvim](https://github.com/folke/noice.nvim)** - Enhanced UI for command line and popups
+- **[Lush.nvim](https://github.com/rktjmp/lush.nvim)** - Colorscheme development
 
 ### Productivity
 - **[Obsidian.nvim](https://github.com/epwalsh/obsidian.nvim)** - Obsidian integration
@@ -217,6 +240,13 @@ A modern, well-structured Neovim configuration built with Lua.
   - **mini.surround** - Surround text objects
   - **mini.trailspace** - Trailing whitespace management
   - **mini.splitjoin** - Split and join code structures
+
+### Code Formatting & Diagnostics
+- **[Conform.nvim](https://github.com/stevearc/conform.nvim)** - Code formatting
+- **[Trouble.nvim](https://github.com/folke/trouble.nvim)** - Better diagnostics display
+- **[Prettier.nvim](https://github.com/MunifTanjim/prettier.nvim)** - Prettier integration
+- **[Neoformat](https://github.com/sbdchd/neoformat)** - Code formatter
+- **[Nvim-emmet](https://github.com/olrtg/nvim-emmet)** - Emmet HTML/CSS abbreviations
 
 ### Telescope Extensions
 - **telescope-fzf-native** - FZF integration
@@ -288,6 +318,10 @@ Modify `lua/core/options.lua` to adjust Neovim settings.
 - Comprehensive LSP setup supports multiple languages including Lua, TypeScript, Go, HTML, CSS, and more
 - Enhanced completion with snippets, LSP integration, and Tailwind CSS support
 - Mason automatically manages LSP servers and development tools
+- Conform.nvim provides automatic code formatting with language-specific formatters
+- Trouble.nvim offers a better interface for viewing diagnostics and quickfix lists
+- Noice.nvim enhances the UI with improved command line and popup interfaces
+- Emmet support for rapid HTML/CSS development with abbreviation expansion
 
 ## 🤝 Contributing
 
