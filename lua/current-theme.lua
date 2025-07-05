@@ -1,1 +1,1 @@
-vim.cmd("colorscheme db")
+vim.cmd("colorscheme db-lotus")

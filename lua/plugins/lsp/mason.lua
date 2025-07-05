@@ -32,12 +32,13 @@ return {
 		})
 
 		mason_lspconfig.setup({
-			automatic_enable = false,
+			automatic_enable = true,
 			-- servers for mason to install
 			ensure_installed = {
 				"lua_ls",
 				-- "ts_ls", currently using a ts plugin
 				"html",
+				"bashls",
 				"cssls",
 				"tailwindcss",
 				"gopls",

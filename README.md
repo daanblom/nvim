@@ -9,7 +9,7 @@ A modern, well-structured Neovim configuration built with Lua.
 - **Beautiful UI**: db.nvim colorscheme with transparent background support
 - **Status Line**: Lualine.nvim for a beautiful and informative status bar
 - **Fuzzy Finding**: Telescope integration for file searching and navigation
-- **Command Palette**: Wilder.nvim for enhanced command-line completion
+- **Command Palette**: Wilder.nvim for enhanced command-line completion (disabled)
 - **Git Integration**: LazyGit integration through Snacks.nvim and GitGutter for change indicators
 - **Note Taking**: Obsidian.nvim integration for markdown note management
 - **Auto-completion**: Enhanced nvim-cmp with snippets, LSP integration, and Tailwind support
@@ -26,6 +26,8 @@ A modern, well-structured Neovim configuration built with Lua.
 - **Diagnostics**: Trouble.nvim for better diagnostic display
 - **Enhanced UI**: Noice.nvim for improved command line and popup interfaces
 - **HTML/CSS**: Emmet support for rapid HTML/CSS development
+- **Auto-pairs**: Nvim-autopairs for automatic bracket and quote pairing
+- **Transparent Background**: Optional transparent background support (currently disabled)
 
 ## 📁 Structure
 
@@ -33,12 +35,16 @@ A modern, well-structured Neovim configuration built with Lua.
 ~/.config/nvim/
 ├── init.lua                 # Main entry point
 ├── lazy-lock.json          # Plugin lock file
+├── after/                  # After directory (empty)
 └── lua/
     ├── core/
     │   ├── init.lua        # Core initialization
     │   ├── keymaps.lua     # Key mappings
     │   └── options.lua     # Neovim options
     ├── plugins/
+    │   ├── disabled/       # Disabled plugins
+    │   │   ├── transparent.lua # Transparent background (disabled)
+    │   │   └── wilder.lua  # Wilder.nvim (disabled)
     │   ├── alphanvim.lua   # Startup screen configuration
     │   ├── autopairs.lua   # Auto-pairs configuration
     │   ├── colorscheme.lua # db.nvim colorscheme
@@ -58,9 +64,7 @@ A modern, well-structured Neovim configuration built with Lua.
     │   ├── snacks.lua      # Snacks.nvim configuration
     │   ├── telescope.lua   # Telescope fuzzy finder
     │   ├── treesitter.lua  # Treesitter configuration
-    │   ├── transparent.lua # Transparent background
-    │   ├── trouble.lua     # Diagnostics display
-    │   └── wilder.lua      # Command palette configuration
+    │   └── trouble.lua     # Diagnostics display
     └── lsp/
         ├── mason.lua       # LSP package manager
         ├── lsp.lua         # LSP server configurations
@@ -72,10 +76,10 @@ A modern, well-structured Neovim configuration built with Lua.
 ## 🎨 Appearance
 
 - **Startup Screen**: Alpha-nvim with file icons and recent files
-- **Colorscheme**: [db.nvim](https://github.com/daanblom/db.nvim) - A beautiful dark theme 
+- **Colorscheme**: [db.nvim](https://github.com/daanblom/db.nvim) - A beautiful dark theme (db-lotus variant)
 - **Status Line**: Lualine.nvim with git integration and lazy updates
 - **Icons**: Nvim-web-devicons for file type icons
-- **Transparency**: Optional transparent background support
+- **Transparency**: Optional transparent background support (currently disabled)
 - **Dark Mode**: Optimized for dark backgrounds
 - **Color Highlighting**: Enhanced color display with nvim-colorizer
 - **Enhanced UI**: Noice.nvim for improved command line and popup interfaces
@@ -90,6 +94,9 @@ A modern, well-structured Neovim configuration built with Lua.
 - Clipboard integration with system clipboard
 - Undo file persistence
 - Smart case-insensitive search
+- Split right and below by default
+- Updatetime set to 50ms for faster response
+- EditorConfig support enabled
 
 ### Key Mappings
 
@@ -97,12 +104,51 @@ A modern, well-structured Neovim configuration built with Lua.
 - `<Space>` - Main leader key
 - `<Space>` - Local leader key
 
-#### Navigation
-- `e` - Open file browser (Telescope)
-- `<leader>pr` - Find recent files
+#### Navigation & Editing
+- `J` - Join lines while keeping cursor in middle
+- `n/N` - Search with cursor centered
+- `J/K` (visual) - Move selected lines up/down
+- `<`/`>` (visual) - Indent selected lines
+- `x` - Delete character without yanking
+- `jj` - Exit insert mode
+
+#### System Clipboard
+- `<leader>y` - Copy to system clipboard
+- `<leader>Y` - Copy line to system clipboard
+- `<leader>d` - Delete without yanking
+- `<leader>D` - Delete line without yanking
+- `<leader>yf` - Copy filepath to clipboard
+- `<leader>yn` - Copy filename to clipboard
+- `<leader>ye` - Copy file extension to clipboard
+
+#### Search & Replace
+- `<leader>s` - Search and replace word under cursor
+- `<C-c>` - Clear search highlights
+
+#### File Operations
+- `<leader>f` - Format code
+
+#### Tab Management
+- `<leader>t` - Open new tab
+- `<leader>x` - Close current tab
+- `<leader>l` - Next tab
+- `<leader>h` - Previous tab
+
+#### Snacks Picker (Enhanced File Operations)
 - `<leader>pf` - Find files (Snacks)
 - `<leader>ps` - Search in files (Snacks)
 - `<leader>pws` - Search for word under cursor (Snacks)
+- `<leader>pwk` - Show keymaps (Snacks)
+
+#### Git Integration
+- `<leader>lg` - Open LazyGit
+- `<leader>gl` - Open LazyGit log
+
+#### Telescope Operations
+- `<leader>pr` - Find recent files
+- `<leader>pWs` - Find connected words under cursor
+- `<leader>ths` - Theme switcher
+- `e` - Open file browser
 
 #### File Browser (Telescope)
 - `e` - Open file browser
@@ -119,17 +165,6 @@ A modern, well-structured Neovim configuration built with Lua.
 - `<leader>ef` - Open explorer at current file location
 - `<CR>` or `L` - Enter directory or open file
 - `-` or `H` - Go to parent directory
-
-#### Tab Management
-- `<leader>t` - Open new tab
-- `<leader>x` - Close current tab
-- `<leader>l` - Next tab
-- `<leader>h` - Previous tab
-
-#### Git Integration
-- `<leader>lg` - Open LazyGit
-- `<leader>gl` - Open LazyGit log
-- GitGutter indicators for file changes
 
 #### LSP (Language Server Protocol)
 - `gd` - Go to definition (Telescope)
@@ -154,14 +189,6 @@ A modern, well-structured Neovim configuration built with Lua.
 - `<leader>mp` - Format file or range (Conform)
 - `<leader>xe` - Wrap with Emmet abbreviation
 
-#### Theme Management
-- `<leader>ths` - Theme switcher
-
-#### Focus Mode
-- `:Focus` - Toggle focus mode
-- `:Zen` - Enter zen mode
-- `:Narrow` - Narrow view
-
 #### Code Utilities
 - `<leader>cw` - Erase trailing whitespace
 - `sa` - Add surrounding (normal/visual mode)
@@ -174,58 +201,66 @@ A modern, well-structured Neovim configuration built with Lua.
 - `sk` - Split arguments
 - `<C-space>` - Incremental selection (treesitter)
 
-#### Utility
-- `<leader>y` - Copy to system clipboard
-- `<leader>d` - Delete without yanking
-- `<leader>f` - Format code
-- `<leader>s` - Search and replace word under cursor
-- `<leader>yf` - Copy filepath to clipboard
-- `<leader>yn` - Copy filename to clipboard
-- `<leader>ye` - Copy file extension to clipboard
-
-#### Insert Mode
-- `jj` - Exit insert mode
-
 ## 📦 Plugins
 
 ### Core Plugins
-- **[Lazy.nvim](https://github.com/folke/lazy.nvim)** - Plugin manager
-- **[Alpha-nvim](https://github.com/goolord/alpha-nvim)** - Startup screen
-- **[Telescope.nvim](https://github.com/nvim-telescope/telescope.nvim)** - Fuzzy finder
-- **[Snacks.nvim](https://github.com/folke/snacks.nvim)** - Enhanced picker and utilities
-- **[Nvim-autopairs](https://github.com/windwp/nvim-autopairs)** - Auto-pair brackets and quotes
+- **[Lazy.nvim](https://github.com/folke/lazy.nvim)** - Plugin manager with automatic updates and change detection
+- **[Alpha-nvim](https://github.com/goolord/alpha-nvim)** - Startup screen with file icons
+- **[Telescope.nvim](https://github.com/nvim-telescope/telescope.nvim)** - Fuzzy finder with FZF integration
+- **[Snacks.nvim](https://github.com/folke/snacks.nvim)** - Enhanced picker and utilities with LazyGit integration
+- **[Nvim-autopairs](https://github.com/windwp/nvim-autopairs)** - Auto-pair brackets and quotes with Treesitter integration
 
 ### Appearance
-- **[db.nvim](https://github.com/daanblom/db.nvim)** - Colorscheme
-- **[Lualine.nvim](https://github.com/nvim-lualine/lualine.nvim)** - Status line
+- **[db.nvim](https://github.com/daanblom/db.nvim)** - Colorscheme (db-lotus variant)
+- **[Lualine.nvim](https://github.com/nvim-lualine/lualine.nvim)** - Status line with git integration and lazy updates
 - **[Nvim-web-devicons](https://github.com/nvim-tree/nvim-web-devicons)** - File icons
-- **[Transparent.nvim](https://github.com/xiyaowong/transparent.nvim)** - Transparent background
+- **[Transparent.nvim](https://github.com/xiyaowong/transparent.nvim)** - Transparent background (disabled)
 - **[Nvim-colorizer.lua](https://github.com/norcalli/nvim-colorizer.lua)** - Color highlighting
 - **[Noice.nvim](https://github.com/folke/noice.nvim)** - Enhanced UI for command line and popups
 - **[Lush.nvim](https://github.com/rktjmp/lush.nvim)** - Colorscheme development
 
 ### Productivity
-- **[Obsidian.nvim](https://github.com/epwalsh/obsidian.nvim)** - Obsidian integration
+- **[Obsidian.nvim](https://github.com/epwalsh/obsidian.nvim)** - Obsidian integration with workspace configuration
 - **[Focus.nvim](https://github.com/cdmill/focus.nvim)** - Focus mode and zen editing
-- **[Wilder.nvim](https://github.com/gelguy/wilder.nvim)** - Enhanced command palette
-- **[Showkeys](https://github.com/nvzone/showkeys)** - Display pressed keys
+- **[Wilder.nvim](https://github.com/gelguy/wilder.nvim)** - Enhanced command palette (disabled)
+- **[Showkeys](https://github.com/nvzone/showkeys)** - Display pressed keys with customizable window
 
 ### Git Integration
 - **[Vim-gitgutter](https://github.com/airblade/vim-gitgutter)** - Git change indicators
 
 ### Language Server Protocol
-- **[Mason.nvim](https://github.com/williamboman/mason.nvim)** - LSP package manager
+- **[Mason.nvim](https://github.com/williamboman/mason.nvim)** - LSP package manager with automatic installation
 - **[Mason-lspconfig](https://github.com/williamboman/mason-lspconfig.nvim)** - Mason LSP integration
 - **[Mason-tool-installer](https://github.com/WhoIsSethDaniel/mason-tool-installer.nvim)** - Auto-install tools
 - **[Nvim-lspconfig](https://github.com/neovim/nvim-lspconfig)** - LSP configurations
 - **[Nvim-lsp-file-operations](https://github.com/antosha417/nvim-lsp-file-operations)** - LSP file operations
 
+#### Supported LSP Servers
+- **lua_ls** - Lua language server
+- **html** - HTML language server
+- **bashls** - Bash language server
+- **cssls** - CSS language server
+- **tailwindcss** - Tailwind CSS language server
+- **gopls** - Go language server
+- **emmet_ls** - Emmet language server
+- **emmet_language_server** - Alternative Emmet server
+- **marksman** - Markdown language server
+- **denols** - Deno language server
+- **ts_ls** - TypeScript language server
+
+#### Development Tools
+- **prettier** - Code formatter
+- **stylua** - Lua formatter
+- **isort** - Python import sorter
+- **pylint** - Python linter
+- **clangd** - C/C++ language server
+
 ### Enhanced Completion
-- **[Nvim-cmp](https://github.com/hrsh7th/nvim-cmp)** - Completion engine
+- **[Nvim-cmp](https://github.com/hrsh7th/nvim-cmp)** - Completion engine with smart behavior
 - **[Cmp-nvim-lsp](https://github.com/hrsh7th/cmp-nvim-lsp)** - LSP completion source
 - **[Cmp-buffer](https://github.com/hrsh7th/cmp-buffer)** - Buffer completion source
 - **[Cmp-path](https://github.com/hrsh7th/cmp-path)** - Path completion source
-- **[LuaSnip](https://github.com/L3MON4D3/LuaSnip)** - Snippet engine
+- **[LuaSnip](https://github.com/L3MON4D3/LuaSnip)** - Snippet engine with JS regex support
 - **[Cmp-luasnip](https://github.com/saadparwaiz1/cmp_luasnip)** - LuaSnip completion
 - **[Friendly-snippets](https://github.com/rafamadriz/friendly-snippets)** - VSCode-style snippets
 - **[Lspkind.nvim](https://github.com/onsails/lspkind.nvim)** - VSCode pictograms
@@ -235,23 +270,26 @@ A modern, well-structured Neovim configuration built with Lua.
 - **[Nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter)** - Syntax highlighting and parsing
 - **[Nvim-ts-autotag](https://github.com/windwp/nvim-ts-autotag)** - Auto-close tags for JSX/TSX/HTML
 - **[Mini.nvim](https://github.com/echasnovski/mini.nvim)** - Lightweight plugin suite
-  - **mini.comment** - Comment operations with context awareness
-  - **mini.files** - Lightweight file explorer
-  - **mini.surround** - Surround text objects
-  - **mini.trailspace** - Trailing whitespace management
+  - **mini.comment** - Comment operations with context awareness and TSX/JSX support
+  - **mini.files** - Lightweight file explorer with proper navigation
+  - **mini.surround** - Surround text objects with custom mappings
+  - **mini.trailspace** - Trailing whitespace management with auto-highlight removal
   - **mini.splitjoin** - Split and join code structures
 
 ### Code Formatting & Diagnostics
-- **[Conform.nvim](https://github.com/stevearc/conform.nvim)** - Code formatting
-- **[Trouble.nvim](https://github.com/folke/trouble.nvim)** - Better diagnostics display
+- **[Conform.nvim](https://github.com/stevearc/conform.nvim)** - Code formatting with language-specific formatters
+- **[Trouble.nvim](https://github.com/folke/trouble.nvim)** - Better diagnostics display with todo integration
 - **[Prettier.nvim](https://github.com/MunifTanjim/prettier.nvim)** - Prettier integration
-- **[Neoformat](https://github.com/sbdchd/neoformat)** - Code formatter
 - **[Nvim-emmet](https://github.com/olrtg/nvim-emmet)** - Emmet HTML/CSS abbreviations
 
 ### Telescope Extensions
-- **telescope-fzf-native** - FZF integration
-- **telescope-file-browser** - File browser
-- **telescope-themes** - Theme switcher
+- **telescope-fzf-native** - FZF integration for faster searching
+- **telescope-file-browser** - File browser with hidden file support
+- **telescope-themes** - Theme switcher with live preview
+
+### Disabled Plugins
+- **Transparent.nvim** - Transparent background (disabled)
+- **Wilder.nvim** - Enhanced command palette (disabled)
 
 ## 🛠️ Installation
 
@@ -306,22 +344,36 @@ Edit `lua/core/keymaps.lua` to customize keybindings.
 ### Changing Options
 Modify `lua/core/options.lua` to adjust Neovim settings.
 
+### Enabling Disabled Plugins
+To enable disabled plugins, move them from `lua/plugins/disabled/` to `lua/plugins/`:
+- **Transparent.nvim**: Move `lua/plugins/disabled/transparent.lua` to `lua/plugins/transparent.lua`
+- **Wilder.nvim**: Move `lua/plugins/disabled/wilder.lua` to `lua/plugins/wilder.lua`
+
+### Obsidian Configuration
+The Obsidian integration is configured for a specific workspace path. Update `lua/plugins/obsidian.lua` to match your Obsidian vault location.
+
 ## 📝 Notes
 
-- The configuration uses Lazy.nvim for fast plugin loading
+- The configuration uses Lazy.nvim for fast plugin loading with automatic updates and change detection
 - All plugins are configured with lazy loading for optimal performance
 - Git integration is available through LazyGit and GitGutter
 - Focus mode available for distraction-free reading or editing
-- Treesitter provides advanced syntax highlighting for multiple languages
+- Treesitter provides advanced syntax highlighting for multiple languages including Lua, TypeScript, Go, HTML, CSS, Python, Rust, Java, and more
 - Mini.nvim suite offers lightweight alternatives to larger plugins
-- Wilder.nvim enhances command-line completion with fuzzy matching
-- Comprehensive LSP setup supports multiple languages including Lua, TypeScript, Go, HTML, CSS, and more
+- Comprehensive LSP setup supports multiple languages including Lua, TypeScript, Go, HTML, CSS, Python, Rust, and more
 - Enhanced completion with snippets, LSP integration, and Tailwind CSS support
 - Mason automatically manages LSP servers and development tools
-- Conform.nvim provides automatic code formatting with language-specific formatters
-- Trouble.nvim offers a better interface for viewing diagnostics and quickfix lists
+- Conform.nvim provides automatic code formatting with language-specific formatters including Biome, Prettier, Stylua, and more
+- Trouble.nvim offers a better interface for viewing diagnostics and quickfix lists with todo integration
 - Noice.nvim enhances the UI with improved command line and popup interfaces
 - Emmet support for rapid HTML/CSS development with abbreviation expansion
+- Auto-pairs with Treesitter integration for smart bracket and quote pairing
+- Showkeys displays pressed keys in a customizable window
+- The configuration includes comprehensive diagnostic icons and virtual text
+- LSP file operations are automatically handled
+- The status line shows git branch, diff information, and lazy updates
+- File browser supports hidden files and custom keymaps
+- Mini files provides a lightweight alternative to larger file explorers
 
 ## 🤝 Contributing
 

@@ -7,6 +7,9 @@ return {
 		{ "antosha417/nvim-lsp-file-operations", config = true },
 	},
 	config = function()
+		-- Create the required nvim.lsp.enable autocommand group
+		vim.api.nvim_create_augroup("nvim.lsp.enable", { clear = true })
+
 		-- NOTE: LSP Keybinds
 
 		vim.api.nvim_create_autocmd("LspAttach", {
@@ -225,9 +228,26 @@ return {
 		--     },
 		-- })
 
-		-- Add other LSP servers as needed, e.g., gopls, eslint, html, etc.
+		-- HTML LSP
+		lspconfig.html.setup({
+			capabilities = capabilities,
+			filetypes = { "html", "templ" },
+			cmd = { vim.fn.stdpath("data") .. "/mason/bin/vscode-html-language-server", "--stdio" },
+		})
+
+		-- Bash LSP
+		lspconfig.bashls.setup({
+			capabilities = capabilities,
+			filetypes = { "bash", "sh" },
+			cmd = { vim.fn.stdpath("data") .. "/mason/bin/bash-language-server", "start" },
+		})
+
+		-- CSS LSP
+		lspconfig.cssls.setup({
+			capabilities = capabilities,
+		})
+
+		-- Add other LSP servers as needed, e.g., gopls, eslint, etc.
 		-- lspconfig.gopls.setup({ capabilities = capabilities })
-		-- lspconfig.html.setup({ capabilities = capabilities })
-		-- lspconfig.cssls.setup({ capabilities = capabilities })
 	end,
 }
