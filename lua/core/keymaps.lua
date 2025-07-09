@@ -52,3 +52,19 @@ vim.keymap.set("n", "<leader>yn", ":let @+=expand('%:t')<CR>", opt) -- Copy file
 
 -- Copy file extension to system clipboard
 vim.keymap.set("n", "<leader>ye", ":let @+=expand('%:e')<CR>", opt) -- Copy file extension to system clipboard
+
+-- Spell suggestions telescope
+
+vim.keymap.set("n", "<leader>sp", ":Telescope spell_suggest<CR>", opt)
+
+-- Spell Switcher
+
+vim.api.nvim_create_user_command("SpellEN", function()
+  vim.opt.spelllang = { "en" }
+  vim.opt.spellfile = "~/.vim/spell/en.utf-8.add"
+end, {})
+
+vim.api.nvim_create_user_command("SpellNL", function()
+  vim.opt.spelllang = { "nl" }
+  vim.opt.spellfile = "~/.vim/spell/nl.utf-8.add"
+end, {})
