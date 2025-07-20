@@ -9,7 +9,6 @@ A modern, well-structured Neovim configuration built with Lua.
 - **Beautiful UI**: db.nvim colorscheme with transparent background support
 - **Status Line**: Lualine.nvim for a beautiful and informative status bar
 - **Fuzzy Finding**: Telescope integration for file searching and navigation
-- **Command Palette**: Wilder.nvim for enhanced command-line completion (disabled)
 - **Git Integration**: LazyGit integration through Snacks.nvim and GitGutter for change indicators
 - **Note Taking**: Obsidian.nvim integration for markdown note management
 - **Auto-completion**: Enhanced nvim-cmp with snippets, LSP integration, and Tailwind support
@@ -27,7 +26,7 @@ A modern, well-structured Neovim configuration built with Lua.
 - **Enhanced UI**: Noice.nvim for improved command line and popup interfaces
 - **HTML/CSS**: Emmet support for rapid HTML/CSS development
 - **Auto-pairs**: Nvim-autopairs for automatic bracket and quote pairing
-- **Transparent Background**: Optional transparent background support (currently disabled)
+- **Spell Checking**: Telescope spell suggestions and language switching
 
 ## 📁 Structure
 
@@ -42,9 +41,6 @@ A modern, well-structured Neovim configuration built with Lua.
     │   ├── keymaps.lua     # Key mappings
     │   └── options.lua     # Neovim options
     ├── plugins/
-    │   ├── disabled/       # Disabled plugins
-    │   │   ├── transparent.lua # Transparent background (disabled)
-    │   │   └── wilder.lua  # Wilder.nvim (disabled)
     │   ├── alphanvim.lua   # Startup screen configuration
     │   ├── autopairs.lua   # Auto-pairs configuration
     │   ├── colorscheme.lua # db.nvim colorscheme
@@ -62,6 +58,7 @@ A modern, well-structured Neovim configuration built with Lua.
     │   ├── prettier.lua    # Prettier formatting
     │   ├── showkeys.lua    # Key display configuration
     │   ├── snacks.lua      # Snacks.nvim configuration
+    │   ├── spelling.lua    # Spell checking configuration
     │   ├── telescope.lua   # Telescope fuzzy finder
     │   ├── treesitter.lua  # Treesitter configuration
     │   └── trouble.lua     # Diagnostics display
@@ -76,10 +73,9 @@ A modern, well-structured Neovim configuration built with Lua.
 ## 🎨 Appearance
 
 - **Startup Screen**: Alpha-nvim with file icons and recent files
-- **Colorscheme**: [db.nvim](https://github.com/daanblom/db.nvim) - A beautiful dark theme (db-lotus variant)
+- **Colorscheme**: [db.nvim](https://github.com/daanblom/db.nvim) - A beautiful dark theme 
 - **Status Line**: Lualine.nvim with git integration and lazy updates
 - **Icons**: Nvim-web-devicons for file type icons
-- **Transparency**: Optional transparent background support (currently disabled)
 - **Dark Mode**: Optimized for dark backgrounds
 - **Color Highlighting**: Enhanced color display with nvim-colorizer
 - **Enhanced UI**: Noice.nvim for improved command line and popup interfaces
@@ -201,6 +197,11 @@ A modern, well-structured Neovim configuration built with Lua.
 - `sk` - Split arguments
 - `<C-space>` - Incremental selection (treesitter)
 
+#### Spell Checking
+- `<leader>sp` - Telescope spell suggestions
+- `:SpellEN` - Switch to English spell checking
+- `:SpellNL` - Switch to Dutch spell checking
+
 ## 📦 Plugins
 
 ### Core Plugins
@@ -211,10 +212,9 @@ A modern, well-structured Neovim configuration built with Lua.
 - **[Nvim-autopairs](https://github.com/windwp/nvim-autopairs)** - Auto-pair brackets and quotes with Treesitter integration
 
 ### Appearance
-- **[db.nvim](https://github.com/daanblom/db.nvim)** - Colorscheme (db-lotus variant)
+- **[db.nvim](https://github.com/daanblom/db.nvim)** - Colorscheme 
 - **[Lualine.nvim](https://github.com/nvim-lualine/lualine.nvim)** - Status line with git integration and lazy updates
 - **[Nvim-web-devicons](https://github.com/nvim-tree/nvim-web-devicons)** - File icons
-- **[Transparent.nvim](https://github.com/xiyaowong/transparent.nvim)** - Transparent background (disabled)
 - **[Nvim-colorizer.lua](https://github.com/norcalli/nvim-colorizer.lua)** - Color highlighting
 - **[Noice.nvim](https://github.com/folke/noice.nvim)** - Enhanced UI for command line and popups
 - **[Lush.nvim](https://github.com/rktjmp/lush.nvim)** - Colorscheme development
@@ -222,7 +222,6 @@ A modern, well-structured Neovim configuration built with Lua.
 ### Productivity
 - **[Obsidian.nvim](https://github.com/epwalsh/obsidian.nvim)** - Obsidian integration with workspace configuration
 - **[Focus.nvim](https://github.com/cdmill/focus.nvim)** - Focus mode and zen editing
-- **[Wilder.nvim](https://github.com/gelguy/wilder.nvim)** - Enhanced command palette (disabled)
 - **[Showkeys](https://github.com/nvzone/showkeys)** - Display pressed keys with customizable window
 
 ### Git Integration
@@ -286,10 +285,10 @@ A modern, well-structured Neovim configuration built with Lua.
 - **telescope-fzf-native** - FZF integration for faster searching
 - **telescope-file-browser** - File browser with hidden file support
 - **telescope-themes** - Theme switcher with live preview
+- **telescope-spell-errors** - Spell checking integration
 
-### Disabled Plugins
-- **Transparent.nvim** - Transparent background (disabled)
-- **Wilder.nvim** - Enhanced command palette (disabled)
+### Spell Checking
+- **[Telescope-spell-errors](https://github.com/matkrin/telescope-spell-errors.nvim)** - Spell error detection and suggestions
 
 ## 🛠️ Installation
 
@@ -344,11 +343,6 @@ Edit `lua/core/keymaps.lua` to customize keybindings.
 ### Changing Options
 Modify `lua/core/options.lua` to adjust Neovim settings.
 
-### Enabling Disabled Plugins
-To enable disabled plugins, move them from `lua/plugins/disabled/` to `lua/plugins/`:
-- **Transparent.nvim**: Move `lua/plugins/disabled/transparent.lua` to `lua/plugins/transparent.lua`
-- **Wilder.nvim**: Move `lua/plugins/disabled/wilder.lua` to `lua/plugins/wilder.lua`
-
 ### Obsidian Configuration
 The Obsidian integration is configured for a specific workspace path. Update `lua/plugins/obsidian.lua` to match your Obsidian vault location.
 
@@ -374,6 +368,7 @@ The Obsidian integration is configured for a specific workspace path. Update `lu
 - The status line shows git branch, diff information, and lazy updates
 - File browser supports hidden files and custom keymaps
 - Mini files provides a lightweight alternative to larger file explorers
+- Spell checking with telescope integration and language switching support
 
 ## 🤝 Contributing
 
