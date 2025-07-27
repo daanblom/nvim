@@ -31,7 +31,7 @@ vim.opt.updatetime = 50
 vim.opt.isfname:append("@-@")
 
 vim.opt.clipboard = "unnamedplus"
-vim.opt.hlsearch = true 
+vim.opt.hlsearch = true
 
 vim.opt.mouse = "a"
 vim.g.editorconfig = true
