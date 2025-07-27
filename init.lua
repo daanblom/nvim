@@ -7,3 +7,4 @@ vim.opt.spelllang = { "en", "nl" }
 vim.cmd("set spellfile=~/.vim/spell/en.utf-8.add")
 vim.cmd("set spell!")
 vim.cmd("set cursorline")
+vim.cmd("colorscheme db")
