@@ -72,3 +72,14 @@ end, {})
 vim.api.nvim_create_user_command("DBdim", function()
   vim.cmd("colorscheme db-dim")
 end, {})
+
+-- Obsidian commands 
+vim.keymap.set("n", "<leader>os", ":ObsidianQuickSwitch<CR>", opt)
+vim.keymap.set("n", "<leader>oi", ":ObsidianTOC<CR>", opt)
+vim.keymap.set("n", "<leader>ot", ":ObsidianTags<CR>", opt)
+
+
+
+
+
+vim.keymap.set("n", "<leader>b", ":buffers<CR>", opt)
