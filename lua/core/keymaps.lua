@@ -55,7 +55,7 @@ vim.keymap.set("n", "<leader>ye", ":let @+=expand('%:e')<CR>", opt) -- Copy file
 
 -- Spell suggestions telescope
 
-vim.keymap.set("n", "<leader>sp", ":Telescope spell_suggest<CR>", opt)
+vim.keymap.set("n", "<leader>sp", ":FzfLua spell_suggest<CR>", opt)
 
 -- Spell Switcher
 
@@ -67,4 +67,12 @@ end, {})
 vim.api.nvim_create_user_command("SpellNL", function()
   vim.opt.spelllang = { "nl" }
   vim.opt.spellfile = "~/.vim/spell/nl.utf-8.add"
+end, {})
+
+vim.api.nvim_create_user_command("DB", function()
+  vim.cmd("colorscheme db")
+end, {})
+
+vim.api.nvim_create_user_command("DBdim", function()
+  vim.cmd("colorscheme db-dim")
 end, {})
