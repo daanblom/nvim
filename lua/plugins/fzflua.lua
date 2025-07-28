@@ -16,6 +16,6 @@ return {
         glob_separator = "%s%-%-", -- query separator pattern (lua): ' --'
       },
     },
-    vim.keymap.set("n", "e", "<cmd>FzfLua files<CR>", { desc = "File Explorer" })
+    vim.keymap.set("n", "<leader>b", "<cmd>FzfLua buffers<CR>", { desc = "Buffers" })
   },
 }

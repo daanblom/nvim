@@ -102,7 +102,7 @@ return {
         require("snacks").lazygit.log()
       end,
     },
-    { "f",
+    { "e",
       function()
         require("snacks").explorer(
           {
