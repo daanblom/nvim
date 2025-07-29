@@ -4,7 +4,7 @@ return {
 		cmd = "ShowkeysToggle",
 		opts = {
 			-- position = "bottom-right",
-			maxkeys = 3,
+			maxkeys = 5,
 			show_count = true,
 			winopts = {
 				focusable = false,
