@@ -92,3 +92,15 @@ end, {})
 vim.keymap.set("n", "<leader>os", ":ObsidianQuickSwitch<CR>", opt)
 vim.keymap.set("n", "<leader>oi", ":ObsidianTOC<CR>", opt)
 vim.keymap.set("n", "<leader>ot", ":ObsidianTags<CR>", opt)
+
+-- Pane navigation
+
+vim.keymap.set('n', '<A-l>', ':vertical resize -2<CR>', { silent = true })
+vim.keymap.set('n', '<A-h>', ':vertical resize +2<CR>', { silent = true })
+vim.keymap.set('n', '<A-j>', ':resize +2<CR>', { silent = true })
+vim.keymap.set('n', '<A-k>', ':resize -2<CR>', { silent = true })
+
+vim.keymap.set('n', '<C-h>', '<C-w>h', { silent = true })
+vim.keymap.set('n', '<C-l>', '<C-w>l', { silent = true })
+vim.keymap.set('n', '<C-j>', '<C-w>j', { silent = true })
+vim.keymap.set('n', '<C-k>', '<C-w>k', { silent = true })
