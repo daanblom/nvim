@@ -22,7 +22,7 @@ vim.keymap.set("n", "<leader>d", '"_d', { desc = "Delete without yanking" })
 vim.keymap.set("v", "<leader>d", '"_d', { desc = "Delete without yanking" })
 vim.keymap.set("n", "<leader>D", '"_D', { desc = "Delete without yanking" })
 
-vim.keymap.set('x', 'p', '"_dP', { silent = true }) -- Paste over selection without losing the yank buffer
+vim.keymap.set("x", "p", '"_dP', { silent = true }) -- Paste over selection without losing the yank buffer
 
 vim.keymap.set("i", "jj", "<Esc>", opt) -- Exit insert mode
 vim.keymap.set("n", "<C-c>", ":nohl<CR>", opt) -- Clear search highlights
@@ -97,12 +97,12 @@ vim.keymap.set("n", "<leader>ot", ":ObsidianTags<CR>", opt)
 
 -- Pane navigation
 
-vim.keymap.set('n', '<A-l>', ':vertical resize -2<CR>', { silent = true })
-vim.keymap.set('n', '<A-h>', ':vertical resize +2<CR>', { silent = true })
-vim.keymap.set('n', '<A-j>', ':resize +2<CR>', { silent = true })
-vim.keymap.set('n', '<A-k>', ':resize -2<CR>', { silent = true })
+vim.keymap.set("n", "<A-l>", ":vertical resize -2<CR>", { silent = true })
+vim.keymap.set("n", "<A-h>", ":vertical resize +2<CR>", { silent = true })
+vim.keymap.set("n", "<A-j>", ":resize +2<CR>", { silent = true })
+vim.keymap.set("n", "<A-k>", ":resize -2<CR>", { silent = true })
 
-vim.keymap.set('n', '<C-h>', '<C-w>h', { silent = true })
-vim.keymap.set('n', '<C-l>', '<C-w>l', { silent = true })
-vim.keymap.set('n', '<C-j>', '<C-w>j', { silent = true })
-vim.keymap.set('n', '<C-k>', '<C-w>k', { silent = true })
+vim.keymap.set("n", "<C-h>", "<C-w>h", { silent = true })
+vim.keymap.set("n", "<C-l>", "<C-w>l", { silent = true })
+vim.keymap.set("n", "<C-j>", "<C-w>j", { silent = true })
+vim.keymap.set("n", "<C-k>", "<C-w>k", { silent = true })
