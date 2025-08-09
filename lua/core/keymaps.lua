@@ -22,6 +22,8 @@ vim.keymap.set("n", "<leader>d", '"_d', { desc = "Delete without yanking" })
 vim.keymap.set("v", "<leader>d", '"_d', { desc = "Delete without yanking" })
 vim.keymap.set("n", "<leader>D", '"_D', { desc = "Delete without yanking" })
 
+vim.keymap.set('x', 'p', '"_dP', { silent = true }) -- Paste over selection without losing the yank buffer
+
 vim.keymap.set("i", "jj", "<Esc>", opt) -- Exit insert mode
 vim.keymap.set("n", "<C-c>", ":nohl<CR>", opt) -- Clear search highlights
 
