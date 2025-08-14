@@ -1,6 +1,6 @@
 return {
 	-- "epwalsh/obsidian.nvim",
-  "obsidian-nvim/obsidian.nvim",
+	"obsidian-nvim/obsidian.nvim",
 	version = "*", -- recommended, use latest release instead of latest commit
 	lazy = true,
 	ft = "markdown",
@@ -19,11 +19,13 @@ return {
 			-- },
 		},
 		templates = {
-			folder = "/home/db/Obsidian/TEMPLATES/",
+			folder = "TEMPLATES/",
 		},
-		-- daily_notes = {
-		--   folder = "PERSONAL/Notes/Daily/",
-		-- },
+		daily_notes = {
+			template = "TEMPLATES/Daily.md",
+			workdays_only = false,
+			folder = "PERSONAL/Notes/Daily/",
+		},
 		-- Optional, completion of wiki links, local markdown links, and tags using nvim-cmp.
 		completion = {
 			-- Set to false to disable completion.
@@ -31,6 +33,7 @@ return {
 			-- Trigger completion at 2 chars.
 			min_chars = 2,
 		},
-		open_app_foreground = false,
+		-- open_app_foreground = false,
+		legacy_commands = false,
 	},
 }
