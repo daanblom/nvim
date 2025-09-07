@@ -4,6 +4,7 @@ vim.cmd("set spellfile=~/.vim/spell/en.utf-8.add")
 vim.cmd("set spell!")
 vim.cmd("set cursorline")
 vim.cmd("colorscheme mbc")
+-- vim.cmd("hi Visual guifg=#ffffff guibg=#553322 gui=none")
 
 -- nvim-lint setup
 local lint = require("lint")
