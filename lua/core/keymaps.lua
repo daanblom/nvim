@@ -3,6 +3,14 @@ local opt = { noremap = true, silent = true }
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
+vim.keymap.set("n", "<leader>gg", "0f[lrx", { desc = "Mark markdown checbox" })
+
+vim.keymap.set("n", "<leader><BS>", "viwd", { desc = "Delete whole word under cursor" })
+
+vim.keymap.set('n', 'gF', '<C-w>v gf', { desc = "Opens file under cursor in split" })
+
+vim.keymap.set("n", "<leader><leader>", "@", opt) -- Keep cursor in the middle when joining lines
+
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv", opt) -- Move selected lines down
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv", opt) -- Move selected lines up
 
@@ -24,7 +32,7 @@ vim.keymap.set("n", "<leader>D", '"_D', { desc = "Delete without yanking" })
 
 vim.keymap.set("x", "p", '"_dP', { silent = true }) -- Paste over selection without losing the yank buffer
 
-vim.keymap.set("i", "jj", "<Esc>", opt) -- Exit insert mode
+vim.keymap.set("i", "jj", "<Esc>l", opt) -- Exit insert mode
 vim.keymap.set("n", "<C-c>", ":nohl<CR>", opt) -- Clear search highlights
 
 vim.keymap.set("n", "<leader>f", vim.lsp.buf.format, { desc = "Format code" })
@@ -46,6 +54,8 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 
 vim.keymap.set("v", "rr", ":!sh<CR>", opt) -- Run selected lines in shell
 vim.keymap.set("v", "rf", ":colorsheme mbc<CR>", opt) -- Run selected lines in shell
+
+vim.keymap.set("n", "<leader><Insert>", "]sz=", opt)
 
 vim.keymap.set("n", "<leader>toc", function()
 	vim.cmd("normal! mz")
@@ -91,9 +101,10 @@ vim.api.nvim_create_user_command("DBdim", function()
 end, {})
 
 -- Obsidian commands
-vim.keymap.set("n", "<leader>os", ":ObsidianQuickSwitch<CR>", opt)
-vim.keymap.set("n", "<leader>oi", ":ObsidianTOC<CR>", opt)
-vim.keymap.set("n", "<leader>ot", ":ObsidianTags<CR>", opt)
+vim.keymap.set("n", "<leader>os", ":Obsidian quick_switch<CR>", opt)
+vim.keymap.set("n", "<leader>oi", ":Obsidian toc<CR>", opt)
+vim.keymap.set("n", "<leader>ot", ":Obsidian today<CR>", opt)
+vim.keymap.set("n", "<leader>om", ":Obsidian template<CR>", opt)
 
 -- Pane navigation
 
