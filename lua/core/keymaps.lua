@@ -74,6 +74,6 @@ vim.api.nvim_create_user_command("DBdim", function()
 end, {})
 
 -- Obsidian commands 
-vim.keymap.set("n", "<leader>os", ":ObsidianQuickSwitch<CR>", opt)
-vim.keymap.set("n", "<leader>oi", ":ObsidianTOC<CR>", opt)
-vim.keymap.set("n", "<leader>ot", ":ObsidianTags<CR>", opt)
+vim.keymap.set("n", "<leader>os", ":Obsidian QuickSwitch<CR>", opt)
+vim.keymap.set("n", "<leader>oi", ":Obsidian TOC<CR>", opt)
+vim.keymap.set("n", "<leader>ot", ":Obsidian Tags<CR>", opt)
