@@ -3,6 +3,8 @@ local opt = { noremap = true, silent = true }
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
+-- vim.keymap.set({ 'n', 'v' }, "<leader>ws", require("visual-whitespace").toggle, {}) -- Toggle whitespace visualization
+
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv", opt) -- Move selected lines down
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv", opt) -- Move selected lines up
 
