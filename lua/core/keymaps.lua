@@ -5,6 +5,14 @@ vim.g.maplocalleader = " "
 
 -- vim.keymap.set({ 'n', 'v' }, "<leader>ws", require("visual-whitespace").toggle, {}) -- Toggle whitespace visualization
 
+vim.keymap.set("n", "zz", ":wq!<CR>", opt)
+vim.keymap.set("n", "ss", ":w!<CR>", opt)
+
+-- Markdown 
+vim.keymap.set("n", "ms", ":norm 0I~~<Esc>A~~<CR>", opt) -- Strike trough
+vim.keymap.set("n", "mb", ":norm 0I**<Esc>A**<CR>", opt) -- bold
+vim.keymap.set("n", "mi", ":norm 0I_<Esc>A_<CR>", opt) -- italic
+
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv", opt) -- Move selected lines down
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv", opt) -- Move selected lines up
 
@@ -76,6 +84,6 @@ vim.api.nvim_create_user_command("DBdim", function()
 end, {})
 
 -- Obsidian commands 
-vim.keymap.set("n", "<leader>os", ":Obsidian QuickSwitch<CR>", opt)
-vim.keymap.set("n", "<leader>oi", ":Obsidian TOC<CR>", opt)
-vim.keymap.set("n", "<leader>ot", ":Obsidian Tags<CR>", opt)
+vim.keymap.set("n", "<leader>os", ":ObsidianQuickSwitch<CR>", opt)
+vim.keymap.set("n", "<leader>oi", ":ObsidianTOC<CR>", opt)
+vim.keymap.set("n", "<leader>ot", ":ObsidianTags<CR>", opt)
