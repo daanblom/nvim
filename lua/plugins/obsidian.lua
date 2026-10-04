@@ -9,8 +9,8 @@ return {
 	opts = {
 		workspaces = {
 			{
-				name = "Obsidian",
-				path = "/home/db/Obsidian/",
+				name = "Svalbard",
+				path = "/home/db/Obsidian/Svalbard/",
 			},
 			-- {
 			--   name = "All",
@@ -18,11 +18,11 @@ return {
 			-- },
 		},
 		templates = {
-			folder = "/home/db/Obsidian/TEMPLATES/",
+			folder = "/home/db/Obsidian/Svalbard/Meta/Templates/",
 		},
-		-- daily_notes = {
-		--   folder = "PERSONAL/Notes/Daily/",
-		-- },
+		daily_notes = {
+		  folder = "Personal/Daily/",
+		},
 		-- Optional, completion of wiki links, local markdown links, and tags using nvim-cmp.
 		completion = {
 			-- Set to false to disable completion.

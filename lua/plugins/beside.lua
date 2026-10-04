@@ -1,0 +1,3 @@
+return {
+ "mariocesar/beside.nvim"
+}
